@@ -11,8 +11,9 @@ public:
 	~MyTwilio();
 
 	int send_message(std::string const& to, std::string const& from, 
-		std::string const& body, std::string const& picture_url, std::string& response);
-	int display_details();
+		std::string const& body, std::string const& picture_url, 
+		std::string& response);
+	int display_details(bool);
 private:
 	MyHttpClient client;
 	std::string _account_sid;

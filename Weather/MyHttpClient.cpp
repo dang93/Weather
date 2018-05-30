@@ -1,11 +1,13 @@
 #include "MyHttpClient.h"
 
-std::size_t null_write(const char* input, std::size_t size, std::size_t num, void* output)
+std::size_t null_write(const char* input, std::size_t size, std::size_t num, 
+	void* output)
 {
 	return size * num;
 }
 
-std::size_t callback(const char* input, std::size_t size, std::size_t num, std::string* output)
+std::size_t callback(const char* input, std::size_t size, std::size_t num, 
+	std::string* output)
 {
 	std::size_t total_bytes = size * num;
 	output->append(input, total_bytes);
@@ -41,14 +43,15 @@ int MyHttpClient::init()
 	return 0;
 }
 
-int MyHttpClient::set_parameters(const std::string& parameter)
+int MyHttpClient::set_post_parameters(const std::string& parameter)
 {
 	_parameters.append(parameter);
 
 	return 0;
 }
 
-int MyHttpClient::set_credentials(const std::string& username, const std::string& password)
+int MyHttpClient::set_credentials(const std::string& username, 
+	const std::string& password)
 {
 	curl_easy_setopt(_curl, CURLOPT_USERNAME, username.c_str());
 	curl_easy_setopt(_curl, CURLOPT_PASSWORD, password.c_str());
@@ -74,6 +77,26 @@ int MyHttpClient::POST_request()
 	curl_easy_setopt(_curl, CURLOPT_POST, 1);
 	curl_easy_setopt(_curl, CURLOPT_URL, _url.c_str());
 	curl_easy_setopt(_curl, CURLOPT_POSTFIELDS, _parameters.c_str());
+
+	if (!_detailed_flag)
+	{
+		curl_easy_setopt(_curl, CURLOPT_WRITEFUNCTION, null_write);
+	}
+	else
+	{
+		curl_easy_setopt(_curl, CURLOPT_WRITEFUNCTION, callback);
+		curl_easy_setopt(_curl, CURLOPT_WRITEDATA, _http_data.get());
+	}
+
+	_res = curl_easy_perform(_curl);
+	curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &_http_code);
+
+	return 0;
+}
+
+int MyHttpClient::GET_request()
+{
+	curl_easy_setopt(_curl, CURLOPT_URL, _url.c_str());
 
 	if (!_detailed_flag)
 	{

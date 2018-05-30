@@ -27,6 +27,12 @@
     <ClCompile Include="MyTwilio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyWeather.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyJson.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyHttpClient.h">
@@ -36,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="details.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyWeather.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyJson.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

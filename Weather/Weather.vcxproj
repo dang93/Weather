@@ -153,12 +153,16 @@
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyHttpClient.cpp" />
+    <ClCompile Include="MyJson.cpp" />
     <ClCompile Include="MyTwilio.cpp" />
+    <ClCompile Include="MyWeather.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="details.h" />
     <ClInclude Include="MyHttpClient.h" />
+    <ClInclude Include="MyJson.h" />
     <ClInclude Include="MyTwilio.h" />
+    <ClInclude Include="MyWeather.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
